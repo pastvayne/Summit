@@ -1,82 +1,98 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Fraunces, Sora } from "next/font/google";
 import { Footer } from "@/components/footer";
-import { MotionProvider } from "@/components/motion-provider";
 import { Nav } from "@/components/nav";
-import { site } from "@/lib/protocol";
+import { brand } from "@/lib/brand";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const sora = Sora({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-sora",
+  weight: ["300", "400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-fraunces",
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
-const description =
-  "PaperMill is a Solana-native treasury strategy built around the Papertrade ecosystem.";
+const frauncesItalic = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  style: "italic",
+  variable: "--font-fraunces-italic",
+  axes: ["SOFT", "WONK", "opsz"],
+});
+
+const description = "Summit. Beyond the Horizon. A living mountain in the Ascend universe.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(brand.url),
   title: {
-    default: "PaperMill — The Mill Never Stops",
-    template: "%s · PaperMill",
+    default: "SUMMIT — Beyond the Horizon.",
+    template: "%s · SUMMIT",
   },
   description,
-  applicationName: "PaperMill",
-  keywords: ["PaperMill", "MILL", "Solana", "Papertrade", "treasury"],
+  applicationName: "SUMMIT",
+  keywords: ["Summit", "Ascend", "horizon"],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: site.url,
-    title: "PaperMill — The Mill Never Stops",
+    url: brand.url,
+    title: "SUMMIT — Beyond the Horizon.",
     description,
-    siteName: "PaperMill",
+    siteName: "SUMMIT",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PaperMill — The Mill Never Stops",
+    title: "SUMMIT — Beyond the Horizon.",
     description,
+  },
+  appleWebApp: {
+    capable: true,
+    title: "SUMMIT",
+    statusBarStyle: "black-translucent",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4ecd8",
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0B0C13" },
+    { media: "(prefers-color-scheme: dark)", color: "#0B0C13" },
+  ],
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "PaperMill",
-    url: site.url,
+    name: "SUMMIT",
+    url: brand.url,
     description,
   };
 
   return (
-    <html lang="en" className={`${inter.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full bg-cream text-paper">
+    <html lang="en" className={`${sora.variable} ${fraunces.variable} ${frauncesItalic.variable} h-full antialiased`}>
+      <head>
+        <link rel="preload" as="image" href="/summit/hero.jpg" media="(min-width: 768px)" />
+        <link rel="preload" as="image" href="/summit/hero-mobile.jpg" media="(max-width: 767px)" />
+      </head>
+      <body className="min-h-full bg-obsidian text-ivory">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <MotionProvider>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-paper focus:px-3 focus:py-2 focus:text-ink"
-          >
-            Skip to content
-          </a>
-          <Nav />
-          <main id="main" className="pt-16">
-            {children}
-          </main>
-          <Footer />
-        </MotionProvider>
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-ivory focus:px-3 focus:py-2 focus:text-obsidian">
+          Skip to content
+        </a>
+        <Nav />
+        <main id="main">{children}</main>
+        <Footer />
       </body>
     </html>
   );

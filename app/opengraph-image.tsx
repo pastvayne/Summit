@@ -1,10 +1,15 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "PaperMill — The Mill Never Stops";
+export const alt = "SUMMIT — Beyond the Horizon.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const image = await readFile(join(process.cwd(), "public/summit/hero.jpg"));
+  const src = `data:image/jpeg;base64,${image.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -12,21 +17,26 @@ export default function OpenGraphImage() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          background: "#f4ecd8",
-          color: "#241f1a",
-          padding: "72px",
+          position: "relative",
+          background: "#0B0C13",
+          color: "#F4EFE8",
+          fontFamily: "Georgia, serif",
         }}
       >
-        <div style={{ display: "flex", letterSpacing: "0.22em", fontSize: 22, color: "#6d6256" }}>
-          PAPERMILL · SOLANA
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt="" width={1200} height={630} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+        <div
+          style={{
+            position: "absolute",
+            left: 72,
+            bottom: 64,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div style={{ fontSize: 92, lineHeight: 0.86, letterSpacing: -3 }}>SUMMIT</div>
+          <div style={{ marginTop: 16, fontSize: 32, color: "#FFD1AD", fontStyle: "italic" }}>Beyond the Horizon.</div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", fontSize: 84, lineHeight: 0.92, letterSpacing: -3 }}>
-          <span>THE MILL</span>
-          <span>NEVER STOPS.</span>
-        </div>
-        <div style={{ display: "flex", fontSize: 28, color: "#5c564c" }}>Every trade feeds the mill.</div>
       </div>
     ),
     { ...size },

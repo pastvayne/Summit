@@ -21,7 +21,9 @@ export function PinwheelStage() {
     } catch {
       context = null;
     }
-    setLive(!reduced && Boolean(context));
+    const live = !reduced && Boolean(context);
+    const frame = requestAnimationFrame(() => setLive(live));
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (

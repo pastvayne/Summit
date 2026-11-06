@@ -1,41 +1,34 @@
 import Link from "next/link";
 import { Mark } from "@/components/mark";
-import { navItems } from "@/lib/protocol";
+import { brand, navItems } from "@/lib/brand";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-2">
+    <footer className="site-footer">
+      <div className="footer-grid">
         <div>
-          <div className="flex items-center gap-2.5 text-brass">
-            <Mark />
-            <span className="text-sm font-semibold tracking-[-0.04em] text-paper">papermill</span>
+          <div className="brand-lockup">
+            <Mark className="h-6 w-6" />
+            <span>Summit</span>
           </div>
-          <p className="mt-4 max-w-sm font-serif text-2xl text-paper">The mill never stops.</p>
-          <p className="mt-4 max-w-md text-sm leading-6 text-muted">
-            PaperMill is an independent project. No official affiliation with Papertrade has been
-            verified. Nothing on this site is an offer, a yield promise, or financial advice.
+          <p className="footer-tagline">{brand.tagline}</p>
+          <p className="footer-note">
+            Summit is an independent project in the visual weather of Ascend. No official affiliation
+            has been verified. Nothing here is an offer, a yield, or financial advice.
           </p>
         </div>
         <div>
-          <p className="font-mono text-[11px] tracking-[0.18em] text-brass uppercase">Map</p>
-          <ul className="mt-4 space-y-2 text-sm text-paper-dim">
+          <p className="eyebrow">Index</p>
+          <ul className="footer-links">
             {navItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-paper">
-                  {item.label}
-                </Link>
+                <Link href={item.href}>{item.label}</Link>
               </li>
             ))}
             <li>
-              <Link href="/strategy" className="hover:text-paper">
-                Strategy
-              </Link>
-            </li>
-            <li>
-              <Link href="/#tokenomics" className="hover:text-paper">
-                Tokenomics
-              </Link>
+              <a href={brand.ascend} target="_blank" rel="noreferrer">
+                Ascend on X
+              </a>
             </li>
           </ul>
         </div>

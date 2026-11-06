@@ -1,17 +1,13 @@
-import { Faq } from "@/components/faq";
-import { Hero } from "@/components/hero";
-import { Mechanism } from "@/components/mechanism";
-import { StrategySection } from "@/components/strategy-section";
-import { Tokenomics } from "@/components/tokenomics";
+import { Ascent, Questions, Record } from "@/components/summit/narrative";
+import { LivingSummit } from "@/components/summit/living-summit";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <Mechanism />
-      <StrategySection />
-      <Tokenomics />
-      <Faq />
+      <LivingSummit />
+      <Ascent />
+      <Record />
+      <Questions />
     </>
   );
 }
