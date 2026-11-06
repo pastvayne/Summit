@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Arrow } from "@/components/arrow";
 import { Mark } from "@/components/mark";
 import { brand, navItems } from "@/lib/brand";
 
@@ -37,8 +38,8 @@ export function Nav() {
   return (
     <header className={`site-header ${scrolled || open ? "is-solid" : ""}`}>
       <div className="site-header-bar">
-        <Link href="/#overview" className="brand-lockup control" onClick={() => setOpen(false)}>
-          <Mark className="h-6 w-6" />
+        <Link href="/" className="brand-lockup control" onClick={() => setOpen(false)} aria-label="Summit home">
+          <Mark className="brand-mark" />
           <span>Summit</span>
         </Link>
         <nav className="desktop-nav" aria-label="Primary">
@@ -50,36 +51,47 @@ export function Nav() {
               </Link>
             );
           })}
-          <a className="nav-link control" href={brand.x} target="_blank" rel="noreferrer">
-            X
-          </a>
         </nav>
-        <button
-          type="button"
-          className="menu-button control"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-          <MenuGlyph open={open} />
-        </button>
+        <div className="header-end">
+          <a className="btn btn-line btn-small header-x" href={brand.x} target="_blank" rel="noreferrer">
+            Follow on X
+            <Arrow />
+          </a>
+          <button
+            type="button"
+            className="menu-button control"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+            <MenuGlyph open={open} />
+          </button>
+        </div>
       </div>
-      <nav id="mobile-nav" aria-label="Mobile" className={`menu-panel ${open ? "is-open" : ""}`}>
-        <ul>
-          {navItems.map((item) => (
+      <nav id="mobile-nav" aria-label="Mobile" className={`menu-panel ${open ? "is-open" : ""}`} inert={!open}>
+        <ol>
+          {navItems.map((item, index) => (
             <li key={item.href}>
-              <Link href={item.href} className="control" onClick={() => setOpen(false)}>
+              <Link
+                href={item.href}
+                className="control"
+                aria-current={item.href === pathname ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
+                <span className="menu-index">{String(index + 1).padStart(2, "0")}</span>
                 {item.label}
               </Link>
             </li>
           ))}
-          <li>
-            <a className="control" href={brand.x} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-              X
-            </a>
-          </li>
-        </ul>
+        </ol>
+        <div className="menu-foot">
+          <a className="btn btn-solid" href={brand.x} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+            Follow Summit on X
+            <Arrow />
+          </a>
+          <p>Independent project in the Ascend ecosystem. Contract pending.</p>
+        </div>
       </nav>
     </header>
   );
@@ -87,7 +99,7 @@ export function Nav() {
 
 function MenuGlyph({ open }: { open: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-5" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
       <path
         d={open ? "M5 5 L19 19 M19 5 L5 19" : "M3 8 H21 M3 16 H21"}
         fill="none"

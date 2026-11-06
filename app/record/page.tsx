@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Arrow } from "@/components/arrow";
+import { PageHeader } from "@/components/page-header";
+import { Ledger, RidgeProfile } from "@/components/summit/narrative";
 import { recordFields } from "@/lib/brand";
 
 export const metadata: Metadata = {
@@ -10,33 +13,42 @@ export const metadata: Metadata = {
 
 export default function RecordPage() {
   return (
-    <article className="page-shell">
-      <div className="page-narrow">
-        <p className="eyebrow">The Record</p>
-        <h1 className="display page-title">One transparent record.</h1>
-        <p className="page-lead mt-6">
-          Every buyback. Every KNTQ purchase. Every distribution. Listed here once each one can be
-          opened and checked.
-        </p>
-        <dl className="record-list">
+    <article className="page">
+      <PageHeader
+        eyebrow={
+          <>
+            <span>The Record</span>Transparency
+          </>
+        }
+        title="One transparent record."
+        lead="Every buyback. Every KNTQ purchase. Every distribution. Listed here once each one can be opened and checked."
+        focus="74% 22%"
+      />
+      <div className="page-wide">
+        <dl className="record-board">
           {recordFields.map((field) => (
             <div key={field.label}>
               <dt>{field.label}</dt>
-              <dd>{field.value}</dd>
+              <dd className={field.value === "Pending" || field.value.startsWith("Not") ? "is-pending" : undefined}>
+                {field.value}
+              </dd>
             </div>
           ))}
         </dl>
-        <div className="page-prose">
+        <RidgeProfile compact />
+        <Ledger />
+        <div className="prose page-prose">
           <p>
-            When activity starts, this page is meant to show amounts and the transactions behind
-            them. There is nothing to list yet. Figures will not be estimated.
+            When activity starts, this page is meant to show amounts and the transactions behind them.
+            There is nothing to list yet. Figures will not be estimated.
+          </p>
+          <p className="section-follow">
+            <Link href="/" className="text-link">
+              Back to the summit
+              <Arrow direction="right" />
+            </Link>
           </p>
         </div>
-        <p className="narrative-follow">
-          <Link href="/#record" className="text-link">
-            Back home
-          </Link>
-        </p>
       </div>
     </article>
   );

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Sora } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Sora } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { brand } from "@/lib/brand";
@@ -17,6 +17,13 @@ const fraunces = Fraunces({
   display: "swap",
   variable: "--font-fraunces",
   axes: ["SOFT", "WONK", "opsz"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-plex-mono",
+  weight: ["400", "500"],
 });
 
 const frauncesItalic = Fraunces({
@@ -81,14 +88,30 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   };
 
   return (
-    <html lang="en" className={`${sora.variable} ${fraunces.variable} ${frauncesItalic.variable} h-full antialiased`}>
+    <html lang="en" className={`${sora.variable} ${fraunces.variable} ${frauncesItalic.variable} ${plexMono.variable} h-full antialiased`}>
       <head>
-        <link rel="preload" as="image" href="/summit/hero.jpg" media="(min-width: 768px)" />
-        <link rel="preload" as="image" href="/summit/hero-mobile.jpg" media="(max-width: 767px)" />
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          imageSrcSet="/summit/peak-wide-960.webp 960w, /summit/peak-wide-1600.webp 1600w, /summit/peak-wide-2560.webp 2560w"
+          imageSizes="(min-aspect-ratio: 16/9) 100vw, 177.8vh"
+          media="(min-width: 768px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          type="image/webp"
+          imageSrcSet="/summit/peak-tall-900.webp 900w, /summit/peak-tall-1440.webp 1440w"
+          imageSizes="(max-aspect-ratio: 9/16) 56.25vh, 100vw"
+          media="(max-width: 767px)"
+          fetchPriority="high"
+        />
       </head>
-      <body className="min-h-full bg-obsidian text-ivory">
+      <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-ivory focus:px-3 focus:py-2 focus:text-obsidian">
+        <a href="#main" className="skip-link">
           Skip to content
         </a>
         <Nav />
