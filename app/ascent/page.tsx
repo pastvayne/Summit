@@ -21,7 +21,7 @@ export default function AscentPage() {
         }
         title="Every trade contributes to the journey."
         lead="Trading activity is meant to generate fees for SUMMIT. Those fees have two intended uses."
-        focus="66% 34%"
+        focus="58% 50%"
       />
       <div className="page-body">
         <div className="prose page-prose">

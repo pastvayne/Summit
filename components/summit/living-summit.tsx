@@ -29,7 +29,7 @@ export function LivingSummit() {
           <source
             media="(max-width: 767px)"
             type="image/webp"
-            srcSet="/summit/peak-tall-900.webp 900w, /summit/peak-tall-1440.webp 1440w"
+            srcSet="/summit/peak-tall-780.webp 780w, /summit/peak-tall-1170.webp 1170w"
             sizes="(max-aspect-ratio: 9/16) 56.25vh, 100vw"
           />
           <source
@@ -40,7 +40,7 @@ export function LivingSummit() {
           <img
             ref={imageRef}
             src="/summit/peak-wide-1600.jpg"
-            alt="A lone mountain rising out of a sea of night clouds, its summit lit violet."
+            alt="A jagged, snow-covered summit under a star-filled violet night sky."
             width={2560}
             height={1440}
             fetchPriority="high"

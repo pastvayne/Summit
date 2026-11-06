@@ -53,6 +53,12 @@ export function Footer() {
       <div className="footer-base">
         <p>© 2026 Summit</p>
         <p>Contract pending · Record empty until activity can be checked</p>
+        <p>
+          Photo:{" "}
+          <a href="https://unsplash.com/photos/SumjjLhysZM" target="_blank" rel="noreferrer">
+            Marek Piwnicki / Unsplash
+          </a>
+        </p>
       </div>
     </footer>
   );

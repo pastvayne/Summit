@@ -22,7 +22,7 @@ export default function RecordPage() {
         }
         title="One transparent record."
         lead="Every buyback. Every KNTQ purchase. Every distribution. Listed here once each one can be opened and checked."
-        focus="74% 22%"
+        focus="70% 40%"
       />
       <div className="page-wide">
         <dl className="record-board">

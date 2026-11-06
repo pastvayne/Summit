@@ -103,7 +103,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="preload"
           as="image"
           type="image/webp"
-          imageSrcSet="/summit/peak-tall-900.webp 900w, /summit/peak-tall-1440.webp 1440w"
+          imageSrcSet="/summit/peak-tall-780.webp 780w, /summit/peak-tall-1170.webp 1170w"
           imageSizes="(max-aspect-ratio: 9/16) 56.25vh, 100vw"
           media="(max-width: 767px)"
           fetchPriority="high"

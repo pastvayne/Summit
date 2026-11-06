@@ -30,7 +30,7 @@ export default async function OpenGraphImage() {
             inset: 0,
             display: "flex",
             background:
-              "linear-gradient(90deg, rgba(11,12,19,0.88) 0%, rgba(11,12,19,0.55) 38%, rgba(11,12,19,0) 62%)",
+              "linear-gradient(0deg, rgba(11,12,19,0.9) 0%, rgba(11,12,19,0) 50%), linear-gradient(90deg, rgba(11,12,19,0.88) 0%, rgba(11,12,19,0.55) 38%, rgba(11,12,19,0) 62%)",
           }}
         />
         <div

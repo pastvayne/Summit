@@ -10,8 +10,8 @@ type MountOptions = {
  * Zoom origin and cover focus for each plate, in texture UV (y up).
  * focus mirrors the CSS object-position on .plate img: x% and (1 - y)%.
  */
-const WIDE = { origin: [0.7, 0.66], focus: [0.62, 0.56] } as const;
-const TALL = { origin: [0.5, 0.76], focus: [0.5, 0.6] } as const;
+const WIDE = { origin: [0.66, 0.5], focus: [0.6, 0.5] } as const;
+const TALL = { origin: [0.5, 0.6], focus: [0.5, 0.6] } as const;
 
 const VERT = `
 attribute vec2 aPos;

@@ -555,9 +555,9 @@ button,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 62% 44%;
+  object-position: 60% 50%;
   transform: scale(1.015);
-  transform-origin: 62% 44%;
+  transform-origin: 60% 50%;
 }
 
 @media (max-width: 767px) {
@@ -2276,6 +2276,19 @@ main:has(.altimeter) + .site-footer {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--haze);
+}
+
+.footer-base a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--line-strong);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer-base a:hover {
+    color: var(--peach);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

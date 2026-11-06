@@ -20,7 +20,7 @@ export default function AboutPage() {
           </>
         }
         title="An independent project in the Ascend ecosystem."
-        focus="72% 26%"
+        focus="64% 44%"
       />
       <div className="page-body">
         <div className="prose page-prose">

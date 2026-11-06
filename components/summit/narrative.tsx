@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { brand, kntqSheet, ledgerColumns } from "@/lib/brand";
 import { Arrow } from "@/components/arrow";
-import { RIDGE_AREA, RIDGE_LINE, RIDGE_POINTS, RIDGE_VIEW } from "@/components/summit/ridge";
+import { RIDGE_AREA, RIDGE_LINE, RIDGE_PEAK, RIDGE_POINTS, RIDGE_VIEW } from "@/components/summit/ridge";
 
 export function Hype() {
   return (
@@ -60,13 +60,14 @@ export function Hype() {
   );
 }
 
-/** Waypoints placed along the traced ridge, one per column of the public record. */
+/** Waypoints placed up the traced ridge to its summit, one per column of the public record. */
+const PEAK_AT = RIDGE_PEAK.x / RIDGE_VIEW.width;
 const waypoints = [
-  { at: 0.5, label: "Fees collected" },
-  { at: 0.58, label: "SUMMIT repurchased" },
-  { at: 0.64, label: "KNTQ bought" },
-  { at: 0.69, label: "KNTQ distributed" },
-  { at: 0.729, label: "Transaction" },
+  { at: PEAK_AT - 0.155, label: "Fees collected" },
+  { at: PEAK_AT - 0.115, label: "SUMMIT repurchased" },
+  { at: PEAK_AT - 0.075, label: "KNTQ bought" },
+  { at: PEAK_AT - 0.037, label: "KNTQ distributed" },
+  { at: PEAK_AT, label: "Transaction" },
 ] as const;
 
 function ridgeY(x: number) {
@@ -214,7 +215,7 @@ export function Community() {
           <source
             media="(max-width: 767px)"
             type="image/webp"
-            srcSet="/summit/peak-tall-900.webp 900w, /summit/peak-tall-1440.webp 1440w"
+            srcSet="/summit/peak-tall-780.webp 780w, /summit/peak-tall-1170.webp 1170w"
             sizes="100vw"
           />
           <source

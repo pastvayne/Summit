@@ -8,7 +8,7 @@ export function PageHeader({
   eyebrow,
   title,
   lead,
-  focus = "70% 30%",
+  focus = "64% 44%",
 }: {
   eyebrow: ReactNode;
   title: ReactNode;
