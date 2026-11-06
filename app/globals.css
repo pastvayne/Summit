@@ -113,10 +113,10 @@ button,
 }
 
 .site-header-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   height: 4rem;
   align-items: center;
-  justify-content: space-between;
   padding: 0 1.25rem;
 }
 
@@ -149,13 +149,14 @@ button,
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex;
+    justify-self: center;
   }
 }
 
 .nav-link {
-  color: rgba(244, 239, 232, 0.72);
-  font-size: 0.82rem;
-  letter-spacing: 0.16em;
+  color: rgba(244, 239, 232, 0.78);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   transition: color 160ms var(--ease-out);
 }
@@ -184,6 +185,7 @@ button,
   width: 2.75rem;
   align-items: center;
   justify-content: center;
+  justify-self: end;
   color: #f4efe8;
 }
 
@@ -351,8 +353,28 @@ button,
 
 @media (min-width: 768px) {
   .hero-copy-wrap {
-    justify-content: flex-start;
-    padding: 18vh 0 0 7.5vw;
+    justify-content: flex-end;
+    padding: 0 0 14vh 7.5vw;
+  }
+}
+
+.hero-actions {
+  margin-top: 1.5rem;
+}
+
+.hero-action {
+  color: #ffd1ad;
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 209, 173, 0.75);
+  padding-bottom: 0.3rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-action:hover,
+  .engine-node:hover {
+    color: #f4efe8;
   }
 }
 
@@ -673,7 +695,7 @@ button,
 .record-copy {
   position: relative;
   z-index: 1;
-  max-width: 34rem;
+  max-width: 40rem;
   margin-top: -12vh;
   padding: 0 1.25rem 4.5rem;
 }
@@ -681,12 +703,20 @@ button,
 @media (min-width: 960px) {
   .record-copy {
     display: flex;
+    width: min(40rem, 48vw);
+    max-width: none;
     min-height: 100svh;
     margin-top: 0;
+    margin-left: 7vw;
     flex-direction: column;
     justify-content: center;
-    padding: 7rem 7vw;
+    padding: 6rem 0;
   }
+}
+
+.record-lead,
+.record-body {
+  max-width: 36rem;
 }
 
 .record-list {
@@ -713,8 +743,130 @@ button,
   color: #f4efe8;
 }
 
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem 2.5rem;
+  padding: 1.2rem 7.5vw;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.status-strip span {
+  margin-right: 0.65rem;
+  color: #a88bff;
+}
+
+.engine {
+  padding: 6.5rem 7.5vw 5rem;
+}
+
+.engine-title,
+.hype-title {
+  margin-top: 0.75rem;
+  font-size: clamp(3.2rem, 5.2vw, 5.8rem);
+  line-height: 0.9;
+}
+
+.engine-lead {
+  margin-top: 1rem;
+  max-width: 36rem;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+.engine-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 0.7rem;
+  margin-top: 3rem;
+}
+
+.engine-branches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.engine-branch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.engine-node {
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: #c9c3bb;
+  padding: 0.35rem 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.engine-node.is-on {
+  color: #ffd1ad;
+  border-bottom-color: #ffd1ad;
+}
+
+.engine-line,
+.engine-split {
+  display: block;
+  width: 2.25rem;
+  height: 1px;
+  background: rgba(168, 139, 255, 0.55);
+}
+
+.engine-note,
+.engine-aside,
+.hype-prose p,
+.record-body {
+  max-width: 42rem;
+  color: #c9c3bb;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.engine-note {
+  margin-top: 2.4rem;
+  border-top: 1px solid var(--hairline);
+  padding-top: 1.1rem;
+}
+
+.engine-note-kicker {
+  color: #ffd1ad;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.engine-aside,
+.record-body {
+  margin-top: 1rem;
+  font-size: 0.98rem;
+}
+
+.hype {
+  padding: 2rem 7.5vw 6rem;
+}
+
+.hype-prose {
+  margin-top: 1.4rem;
+  display: grid;
+  gap: 1rem;
+}
+
 .follow {
-  padding: 5rem 1.25rem 5.5rem;
+  padding: 5rem 7.5vw 5.5rem;
   border-top: 1px solid var(--hairline);
 }
 
@@ -795,18 +947,6 @@ button,
 @media (min-width: 768px) {
   .site-footer {
     padding: 4.5rem 6vw calc(3rem + env(safe-area-inset-bottom, 0px));
-  }
-}
-
-.footer-grid {
-  display: grid;
-  gap: 2.5rem;
-  max-width: 1100px;
-}
-
-@media (min-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1.4fr 0.6fr;
   }
 }
 

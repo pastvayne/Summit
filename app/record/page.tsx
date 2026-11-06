@@ -3,8 +3,8 @@ import Link from "next/link";
 import { recordFields } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "Status",
-  description: "A clear record of SUMMIT’s published status.",
+  title: "The Record",
+  description: "Where SUMMIT will publish buybacks, HYPE purchases, and distributions.",
   alternates: { canonical: "/record" },
 };
 
@@ -12,9 +12,12 @@ export default function RecordPage() {
   return (
     <article className="page-shell">
       <div className="page-narrow">
-        <p className="eyebrow">Status</p>
-        <h1 className="display page-title">A clear record of the project’s progress.</h1>
-        <p className="page-lead mt-6">Only what can be stated is listed. Empty fields stay empty.</p>
+        <p className="eyebrow">The Record</p>
+        <h1 className="display page-title">One transparent record.</h1>
+        <p className="page-lead mt-6">
+          Every buyback. Every HYPE purchase. Every distribution. Listed here once each one can be
+          opened and checked.
+        </p>
         <dl className="record-list">
           {recordFields.map((field) => (
             <div key={field.label}>
@@ -25,14 +28,13 @@ export default function RecordPage() {
         </dl>
         <div className="page-prose">
           <p>
-            SUMMIT is inspired by the Ascend ecosystem and remains independent. No official
-            affiliation has been verified.
+            When activity starts, this page is meant to show amounts and the transactions behind
+            them. There is nothing to list yet. Figures will not be estimated.
           </p>
-          <p>If a public ledger is opened, this page will link to it. It will not estimate one.</p>
         </div>
         <p className="narrative-follow">
           <Link href="/#record" className="text-link">
-            Back to the status
+            Back home
           </Link>
         </p>
       </div>

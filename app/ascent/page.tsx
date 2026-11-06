@@ -1,48 +1,38 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "Notes",
-  description: "What SUMMIT is, what is public, and what has not been published.",
+  title: "The Ascent",
+  description: "How SUMMIT intends to use trading fees for buybacks and HYPE distributions.",
   alternates: { canonical: "/ascent" },
 };
 
 export default function AscentPage() {
   return (
-    <>
-      <div className="page-band">
-        <Image
-          src="/summit/hero.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-[68%_36%]"
-        />
-      </div>
-      <article className="page-shell">
-        <div className="page-narrow">
-          <p className="eyebrow">Notes</p>
-          <h1 className="display page-title">What the project is.</h1>
-          <div className="page-prose">
-            <p>{brand.line}</p>
-            <p>
-              The mountain is the public face of that work. It is not a product diagram, and it is
-              not a stand-in for a token, a contract, or a treasury.
-            </p>
-            <p>
-              Those things will be named here if they are published. They are not published now.
-              Ascend remains a separate project. This site does not speak for it.
-            </p>
-          </div>
-          <p className="narrative-follow">
-            <Link href="/#overview" className="text-link">
-              Back to the start
-            </Link>
+    <article className="page-shell">
+      <div className="page-narrow">
+        <p className="eyebrow">The Ascent</p>
+        <h1 className="display page-title">Every trade contributes to the journey.</h1>
+        <div className="page-prose">
+          <p>Trading activity is meant to generate fees for SUMMIT. Those fees have two intended uses.</p>
+          <p>
+            One portion buys SUMMIT in the market. A repurchase is not a payment to holders and it is
+            not a burn. The treatment of repurchased tokens will be written down when it is decided.
+            A buyback does not promise a higher price.
           </p>
+          <p>
+            The other portion buys HYPE, the token of Hyperliquid, for distribution to eligible
+            SUMMIT holders. Eligibility and the schedule are not published. Distributions depend on
+            fees that were actually collected.
+          </p>
+          <p>None of this is operating yet. The contract is pending.</p>
         </div>
-      </article>
-    </>
+        <p className="narrative-follow">
+          <Link href="/#engine" className="text-link">
+            Back to the engine
+          </Link>
+        </p>
+      </div>
+    </article>
   );
 }

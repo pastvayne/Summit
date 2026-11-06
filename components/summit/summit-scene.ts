@@ -5,7 +5,7 @@ type MountOptions = {
   cue: HTMLElement | null;
 };
 
-const DESKTOP_PEAK = [0.7, 0.71];
+const DESKTOP_PEAK = [0.74, 0.67];
 const MOBILE_PEAK = [0.5, 0.76];
 
 const VERT = `
@@ -65,25 +65,14 @@ void main() {
   texUv = clamp(texUv, 0.001, 0.999);
   vec3 color = texture2D(uImage, texUv).rgb;
 
-  float far = fbm(vec2(vUv.x * 1.35 + uTime * 0.007 * uMotion, vUv.y * 0.9 - uTime * 0.002 * uMotion));
-  float farBand = smoothstep(0.62, 0.2, vUv.y);
-  color += vec3(0.05, 0.04, 0.09) * far * farBand * 0.22;
+  float far = fbm(vec2(vUv.x * 1.2 + uTime * 0.006 * uMotion, vUv.y * 0.8));
+  float farBand = smoothstep(0.42, 0.12, vUv.y);
+  color = mix(color, color + vec3(0.03, 0.025, 0.05), far * farBand * 0.12);
 
-  float mid = fbm(vec2(vUv.x * 2.1 - uTime * 0.013 * uMotion, vUv.y * 1.6 + 3.0));
-  float midBand = smoothstep(0.46, 0.12, vUv.y);
-  vec3 midMist = mix(vec3(0.16, 0.15, 0.24), vec3(0.55, 0.48, 0.66), mid);
-  color = mix(color, midMist, smoothstep(0.42, 0.78, mid) * midBand * 0.16);
-
-  float near = fbm(vec2(vUv.x * 3.2 + uTime * 0.021 * uMotion, vUv.y * 2.8 - uTime * 0.006 * uMotion));
-  float nearBand = smoothstep(0.28, 0.0, vUv.y);
-  vec3 nearMist = mix(vec3(0.2, 0.18, 0.3), vec3(0.78, 0.7, 0.84), near);
-  color = mix(color, nearMist, smoothstep(0.4, 0.82, near) * nearBand * 0.26);
-
-  vec2 peakScreen = (uPeak - uPan - 0.5) / uCover + 0.5;
-  float d = distance(vUv, peakScreen);
-  float pulse = 0.9 + 0.1 * sin(uTime * 0.32);
-  vec3 light = vec3(0.72, 0.58, 0.92);
-  color += light * exp(-d * d * 240.0) * 0.18 * pulse;
+  float near = fbm(vec2(vUv.x * 2.4 + uTime * 0.016 * uMotion, vUv.y * 1.8 - uTime * 0.004 * uMotion));
+  float nearBand = smoothstep(0.22, 0.0, vUv.y);
+  vec3 nearMist = mix(vec3(0.18, 0.16, 0.26), vec3(0.62, 0.56, 0.72), near);
+  color = mix(color, nearMist, smoothstep(0.45, 0.8, near) * nearBand * 0.2);
 
   float motes = 0.0;
   for (int i = 0; i < 8; i++) {
@@ -224,11 +213,10 @@ export function mountSummit({ canvas, track, copy, cue }: MountOptions) {
     const cssH = canvas.clientHeight;
     if (cssW < 2 || cssH < 2) return;
     const narrow = cssW < 768;
-    const maxDpr = narrow ? 1.2 : 1.45;
-    const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+    const dpr = cssW >= 1600 ? 1 : Math.min(window.devicePixelRatio || 1, narrow ? 1.15 : 1.25);
     let width = Math.round(cssW * dpr);
     let height = Math.round(cssH * dpr);
-    const maxEdge = narrow ? 1000 : 1600;
+    const maxEdge = narrow ? 1000 : 2560;
     if (width > maxEdge) {
       const scale = maxEdge / width;
       width = maxEdge;
@@ -249,13 +237,9 @@ export function mountSummit({ canvas, track, copy, cue }: MountOptions) {
     const rect = track.getBoundingClientRect();
     const total = rect.height - window.innerHeight;
     const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-    const zoom =
-      1.04 +
-      Math.sin(time * 0.041) * 0.007 +
-      Math.sin(time * 0.017) * 0.005 +
-      progress * 0.09;
-    const panX = Math.sin(time * 0.029) * 0.005 + Math.cos(time * 0.013) * 0.003 + pointerX * 0.007;
-    const panY = Math.cos(time * 0.023) * 0.0035 + pointerY * 0.004 - progress * 0.008;
+    const zoom = 1 + Math.sin(time * 0.027) * 0.004 + Math.sin(time * 0.011) * 0.003 + progress * 0.035;
+    const panX = Math.sin(time * 0.021) * 0.003 + pointerX * 0.004;
+    const panY = Math.cos(time * 0.017) * 0.002 + pointerY * 0.003 - progress * 0.004;
 
     gl.useProgram(program);
     gl.bindTexture(gl.TEXTURE_2D, plate.texture);

@@ -39,7 +39,7 @@ export function LivingSummit() {
         <div className="hero-copy-wrap">
           <div ref={copyRef} className="hero-copy">
             <p className="eyebrow rise" style={{ animationDelay: "80ms" }}>
-              Independent · Ascend
+              Ascend ecosystem
             </p>
             <h1 className="summit-title rise" style={{ animationDelay: "160ms" }}>
               {brand.name}
@@ -49,6 +49,11 @@ export function LivingSummit() {
             </p>
             <p className="summit-line rise" style={{ animationDelay: "340ms" }}>
               {brand.line}
+            </p>
+            <p className="hero-actions rise" style={{ animationDelay: "430ms" }}>
+              <a className="hero-action" href="#engine">
+                Explore the mechanism
+              </a>
             </p>
           </div>
         </div>
