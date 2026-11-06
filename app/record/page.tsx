@@ -3,8 +3,8 @@ import Link from "next/link";
 import { recordFields } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "Record",
-  description: "What Summit will say, and what it refuses to invent.",
+  title: "Status",
+  description: "A clear record of SUMMIT’s published status.",
   alternates: { canonical: "/record" },
 };
 
@@ -12,11 +12,9 @@ export default function RecordPage() {
   return (
     <article className="page-shell">
       <div className="page-narrow">
-        <p className="eyebrow">Colophon</p>
-        <h1 className="display page-title">The page stays honest.</h1>
-        <p className="page-lead mt-6">
-          Names that exist are written here. Numbers that do not exist are not.
-        </p>
+        <p className="eyebrow">Status</p>
+        <h1 className="display page-title">A clear record of the project’s progress.</h1>
+        <p className="page-lead mt-6">Only what can be stated is listed. Empty fields stay empty.</p>
         <dl className="record-list">
           {recordFields.map((field) => (
             <div key={field.label}>
@@ -27,14 +25,14 @@ export default function RecordPage() {
         </dl>
         <div className="page-prose">
           <p>
-            Summit is independent. Ascend is the universe it looks like, not a contract, a treasury,
-            or a partnership this site can claim.
+            SUMMIT is inspired by the Ascend ecosystem and remains independent. No official
+            affiliation has been verified.
           </p>
-          <p>When a public ledger exists, this page will point at it. It will not estimate one.</p>
+          <p>If a public ledger is opened, this page will link to it. It will not estimate one.</p>
         </div>
         <p className="narrative-follow">
           <Link href="/#record" className="text-link">
-            Back to the mountain
+            Back to the status
           </Link>
         </p>
       </div>

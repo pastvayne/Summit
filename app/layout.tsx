@@ -27,7 +27,8 @@ const frauncesItalic = Fraunces({
   axes: ["SOFT", "WONK", "opsz"],
 });
 
-const description = "Summit. Beyond the Horizon. A living mountain in the Ascend universe.";
+const description =
+  "SUMMIT is an independent project exploring new possibilities within the Ascend ecosystem. Beyond the Horizon.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(brand.url),
@@ -55,6 +56,15 @@ export const metadata: Metadata = {
     capable: true,
     title: "SUMMIT",
     statusBarStyle: "black-translucent",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-48.png", sizes: "48x48", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
 

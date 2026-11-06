@@ -39,7 +39,7 @@ export function LivingSummit() {
         <div className="hero-copy-wrap">
           <div ref={copyRef} className="hero-copy">
             <p className="eyebrow rise" style={{ animationDelay: "80ms" }}>
-              The living summit
+              Independent · Ascend
             </p>
             <h1 className="summit-title rise" style={{ animationDelay: "160ms" }}>
               {brand.name}

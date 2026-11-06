@@ -65,49 +65,39 @@ void main() {
   texUv = clamp(texUv, 0.001, 0.999);
   vec3 color = texture2D(uImage, texUv).rgb;
 
-  float luma = dot(color, vec3(0.2126, 0.7152, 0.0722));
-  float lower = smoothstep(0.68, 0.28, vUv.y);
-  float cloudLike = smoothstep(0.16, 0.48, luma) * (1.0 - smoothstep(0.78, 0.94, luma));
-  float slide = abs(fract(uTime * 0.035) * 2.0 - 1.0);
-  vec2 wind = vec2((slide - 0.5) * 0.046, (slide - 0.5) * 0.012) * uMotion;
-  vec3 blown = texture2D(uImage, clamp(texUv + wind, 0.001, 0.999)).rgb;
-  float n = fbm(vUv * vec2(2.2, 1.5) + vec2(uTime * 0.012 * uMotion, 0.0));
-  float cloudMix = lower * cloudLike * smoothstep(0.32, 0.78, n);
-  color = mix(color, blown, cloudMix * 0.72);
+  float far = fbm(vec2(vUv.x * 1.35 + uTime * 0.007 * uMotion, vUv.y * 0.9 - uTime * 0.002 * uMotion));
+  float farBand = smoothstep(0.62, 0.2, vUv.y);
+  color += vec3(0.05, 0.04, 0.09) * far * farBand * 0.22;
 
-  float mistA = fbm(vec2(vUv.x * 1.7 + uTime * 0.022 * uMotion, vUv.y * 2.2 - uTime * 0.008 * uMotion));
-  float mistB = fbm(vec2(vUv.x * 3.1 - uTime * 0.03 * uMotion, vUv.y * 1.5 + 4.0));
-  float midBand = smoothstep(0.62, 0.18, vUv.y);
-  float frontBand = smoothstep(0.34, 0.0, vUv.y);
-  vec3 mistTint = mix(vec3(0.18, 0.16, 0.28), vec3(0.72, 0.62, 0.78), mistA);
-  color = mix(color, mistTint, mistA * midBand * 0.16);
-  color = mix(color, vec3(0.78, 0.7, 0.84), mistB * frontBand * 0.22);
+  float mid = fbm(vec2(vUv.x * 2.1 - uTime * 0.013 * uMotion, vUv.y * 1.6 + 3.0));
+  float midBand = smoothstep(0.46, 0.12, vUv.y);
+  vec3 midMist = mix(vec3(0.16, 0.15, 0.24), vec3(0.55, 0.48, 0.66), mid);
+  color = mix(color, midMist, smoothstep(0.42, 0.78, mid) * midBand * 0.16);
+
+  float near = fbm(vec2(vUv.x * 3.2 + uTime * 0.021 * uMotion, vUv.y * 2.8 - uTime * 0.006 * uMotion));
+  float nearBand = smoothstep(0.28, 0.0, vUv.y);
+  vec3 nearMist = mix(vec3(0.2, 0.18, 0.3), vec3(0.78, 0.7, 0.84), near);
+  color = mix(color, nearMist, smoothstep(0.4, 0.82, near) * nearBand * 0.26);
 
   vec2 peakScreen = (uPeak - uPan - 0.5) / uCover + 0.5;
   float d = distance(vUv, peakScreen);
-  float pulse = 0.78 + 0.22 * sin(uTime * 0.85);
-  vec3 violet = vec3(0.659, 0.545, 1.0);
-  vec3 pink = vec3(0.945, 0.631, 0.831);
-  vec3 light = mix(violet, pink, 0.62);
-  color += light * exp(-d * d * 160.0) * 0.85 * pulse * uMotion;
-  color += light * exp(-d * d * 26.0) * 0.2 * pulse;
-  float beam = exp(-pow((vUv.x - peakScreen.x) * 14.0, 2.0));
-  float beamY = smoothstep(peakScreen.y + 0.05, peakScreen.y - 0.02, vUv.y) * smoothstep(peakScreen.y - 0.42, peakScreen.y - 0.08, vUv.y);
-  color += light * beam * beamY * 0.07 * pulse;
+  float pulse = 0.9 + 0.1 * sin(uTime * 0.32);
+  vec3 light = vec3(0.72, 0.58, 0.92);
+  color += light * exp(-d * d * 240.0) * 0.18 * pulse;
 
   float motes = 0.0;
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < 8; i++) {
     float fi = float(i);
     float sx = fract(sin(fi * 91.73) * 43758.5453);
     float sy = fract(sin(fi * 37.21) * 23421.631);
-    float speed = 0.008 + fract(sin(fi * 12.4) * 97.0) * 0.018;
+    float speed = 0.004 + fract(sin(fi * 12.4) * 97.0) * 0.008;
     float y = fract(sy + uTime * speed * uMotion);
-    float x = sx + sin(uTime * 0.17 + fi) * 0.012 * uMotion;
-    float tw = 0.35 + 0.65 * (0.5 + 0.5 * sin(uTime * 1.15 + fi * 1.7));
-    motes += smoothstep(0.0032, 0.0, length(vUv - vec2(x, y))) * tw;
+    float x = sx + sin(uTime * 0.11 + fi) * 0.006 * uMotion;
+    float tw = 0.45 + 0.55 * (0.5 + 0.5 * sin(uTime * 0.7 + fi));
+    motes += smoothstep(0.0024, 0.0, length(vUv - vec2(x, y))) * tw;
   }
-  float sky = smoothstep(0.42, 0.72, vUv.y);
-  color += vec3(0.96, 0.93, 1.0) * motes * 0.7 * sky;
+  float sky = smoothstep(0.5, 0.78, vUv.y);
+  color += vec3(0.94, 0.91, 1.0) * motes * 0.45 * sky;
 
   gl_FragColor = vec4(color, 1.0);
 }
@@ -259,12 +249,13 @@ export function mountSummit({ canvas, track, copy, cue }: MountOptions) {
     const rect = track.getBoundingClientRect();
     const total = rect.height - window.innerHeight;
     const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-    const breathe = Math.sin(time * 0.22) * 0.028;
-    const driftX = Math.sin(time * 0.13) * 0.012;
-    const driftY = Math.cos(time * 0.09) * 0.006;
-    const zoom = 1.08 + breathe + progress * 0.16;
-    const panX = driftX + pointerX * 0.012;
-    const panY = driftY + pointerY * 0.008 - progress * 0.015;
+    const zoom =
+      1.04 +
+      Math.sin(time * 0.041) * 0.007 +
+      Math.sin(time * 0.017) * 0.005 +
+      progress * 0.09;
+    const panX = Math.sin(time * 0.029) * 0.005 + Math.cos(time * 0.013) * 0.003 + pointerX * 0.007;
+    const panY = Math.cos(time * 0.023) * 0.0035 + pointerY * 0.004 - progress * 0.008;
 
     gl.useProgram(program);
     gl.bindTexture(gl.TEXTURE_2D, plate.texture);

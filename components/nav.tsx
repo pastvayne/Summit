@@ -51,7 +51,7 @@ export function Nav() {
             );
           })}
           <a className="nav-link control" href={brand.ascend} target="_blank" rel="noreferrer">
-            Ascend
+            X
           </a>
         </nav>
         <button
@@ -76,7 +76,7 @@ export function Nav() {
           ))}
           <li>
             <a className="control" href={brand.ascend} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-              Ascend
+              X
             </a>
           </li>
         </ul>

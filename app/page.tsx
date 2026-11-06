@@ -1,4 +1,4 @@
-import { Ascent, Questions, Record } from "@/components/summit/narrative";
+import { Ascent, Follow, Record } from "@/components/summit/narrative";
 import { LivingSummit } from "@/components/summit/living-summit";
 
 export default function HomePage() {
@@ -7,7 +7,7 @@ export default function HomePage() {
       <LivingSummit />
       <Ascent />
       <Record />
-      <Questions />
+      <Follow />
     </>
   );
 }

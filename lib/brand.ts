@@ -1,7 +1,7 @@
 export const brand = {
   name: "SUMMIT",
   tagline: "Beyond the Horizon.",
-  line: "A new horizon awaits. The ascent begins here.",
+  line: "An independent project exploring new possibilities within the Ascend ecosystem.",
   universe: "Ascend",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://summitascend.site",
   ascend: "https://x.com/AscendLaunch",
@@ -9,52 +9,34 @@ export const brand = {
 
 export const navItems = [
   { href: "/#ascent", label: "Ascent" },
-  { href: "/#record", label: "Record" },
+  { href: "/#record", label: "Status" },
   { href: "/ascent", label: "Notes" },
 ] as const;
 
 export const movements = [
   {
     index: "I",
-    title: "Cloud sea",
-    body: "The first ground is not ground. It moves, and it hides how far the stone really is.",
+    title: "The project",
+    body: "SUMMIT is independent. It sits in the Ascend ecosystem without claiming to speak for it.",
   },
   {
     index: "II",
-    title: "Night stone",
-    body: "The face is almost black. Only the edges take a little violet, as if the light above had leaked.",
+    title: "What is public",
+    body: "The name, this site, and the mountain. No token, contract, or ledger has been published.",
   },
   {
     index: "III",
-    title: "Lit summit",
-    body: "The peak is small against the sky and brighter than anything around it. That is the whole invitation.",
+    title: "What follows",
+    body: "Further work will be written here when it exists. Until then, the status stays plain.",
   },
 ] as const;
 
 export const recordFields = [
   { label: "Name", value: "Summit" },
   { label: "Line", value: "Beyond the Horizon." },
-  { label: "Universe", value: "Ascend" },
-  { label: "Token", value: "Unpublished" },
-  { label: "Contract", value: "Unpublished" },
+  { label: "Ecosystem", value: "Ascend" },
+  { label: "Relationship", value: "Independent" },
+  { label: "Token", value: "Not published" },
+  { label: "Contract", value: "Not published" },
   { label: "Ledger", value: "Not open" },
-] as const;
-
-export const questions = [
-  {
-    q: "What is Summit?",
-    a: "A horizon with a name. The mountain is the work you can see. Anything that can be traded or accounted for will be written down only when it exists.",
-  },
-  {
-    q: "What is Ascend?",
-    a: "The visual universe this project sits inside: night, distance, and a light that is not quite dawn. Summit is independent. No official affiliation has been verified.",
-  },
-  {
-    q: "Is there a token or a contract?",
-    a: "Not published. This site will not invent a supply, a fee, or an address.",
-  },
-  {
-    q: "Where is the record?",
-    a: "Closed. When a ledger exists, it will be linked here as a thing you can open, not as a promise.",
-  },
 ] as const;

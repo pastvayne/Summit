@@ -245,8 +245,14 @@ button,
 }
 
 .hero-track {
-  height: 175svh;
+  height: 128svh;
   background: #0b0c13;
+}
+
+@media (max-width: 767px) {
+  .hero-track {
+    height: 112svh;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -386,8 +392,8 @@ button,
 
 .summit-line {
   margin-top: 1rem;
-  max-width: 28ch;
-  color: rgba(244, 239, 232, 0.78);
+  max-width: 36ch;
+  color: rgba(244, 239, 232, 0.82);
   font-size: 1.02rem;
   font-weight: 300;
   line-height: 1.6;
@@ -565,12 +571,20 @@ button,
 .movement-list p,
 .questions dd,
 .page-prose p,
-.footer-note {
+.footer-note,
+.footer-copy {
   margin-top: 0.55rem;
   max-width: 42ch;
   font-size: 0.98rem;
   font-weight: 300;
   line-height: 1.65;
+}
+
+.footer-copy {
+  margin-top: 1.4rem;
+  color: #8e8a96;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
 }
 
 .narrative-follow {
@@ -591,27 +605,87 @@ button,
 }
 
 .record {
-  display: grid;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: #0b0c13;
+}
+
+.record-scene {
+  position: relative;
+  height: 68svh;
+  pointer-events: none;
+}
+
+.record-scene img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+}
+
+.record-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 42%, #0b0c13 100%);
 }
 
 @media (min-width: 960px) {
   .record {
-    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.85fr);
-    min-height: 88svh;
+    min-height: 100svh;
+  }
+
+  .record-scene {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+
+  .record-scene img {
+    top: -8%;
+    right: -4%;
+    left: auto;
+    width: min(76vw, 1080px);
+    height: 120%;
+    object-position: 64% 28%;
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 16%, #000 40%, #000 82%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 78%, transparent 100%);
+    mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.45) 16%, #000 40%, #000 82%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 12%, #000 78%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+
+  .record-scene::after {
+    background:
+      linear-gradient(90deg, #0b0c13 0%, rgba(11, 12, 19, 0.82) 32%, rgba(11, 12, 19, 0.2) 54%, transparent 72%),
+      linear-gradient(to bottom, #0b0c13 0%, transparent 14%, transparent 80%, #0b0c13 100%);
   }
 }
 
 .record-copy {
-  padding: 5.5rem 1.25rem 4rem;
+  position: relative;
+  z-index: 1;
+  max-width: 34rem;
+  margin-top: -12vh;
+  padding: 0 1.25rem 4.5rem;
 }
 
 @media (min-width: 960px) {
   .record-copy {
     display: flex;
+    min-height: 100svh;
+    margin-top: 0;
     flex-direction: column;
     justify-content: center;
-    padding: 6rem 6vw;
+    padding: 7rem 7vw;
   }
 }
 
@@ -622,7 +696,7 @@ button,
 
 .record-list div {
   display: grid;
-  grid-template-columns: 7.5rem minmax(0, 1fr);
+  grid-template-columns: 9rem minmax(0, 1fr);
   gap: 1rem;
   border-top: 1px solid var(--hairline);
   padding: 0.9rem 0;
@@ -639,54 +713,31 @@ button,
   color: #f4efe8;
 }
 
-.record-plate {
-  position: relative;
-  min-height: 72svh;
-  overflow: hidden;
-}
-
-.record-plate img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 28%;
-}
-
-.questions {
-  padding: 5.5rem 1.25rem 6rem;
+.follow {
+  padding: 5rem 1.25rem 5.5rem;
   border-top: 1px solid var(--hairline);
 }
 
 @media (min-width: 960px) {
-  .questions {
-    padding: 7rem 6vw 8rem;
+  .follow {
+    padding: 6.5rem 7vw 7rem;
   }
 }
 
-.questions-grid {
-  display: grid;
-  gap: 2.5rem;
-  max-width: 1100px;
+.follow-title {
+  margin-top: 0.8rem;
+  max-width: 12ch;
+  font-size: clamp(3rem, 6vw, 5.2rem);
+  line-height: 0.9;
 }
 
-@media (min-width: 960px) {
-  .questions-grid {
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
-    gap: 4rem;
-  }
-}
-
-.questions div {
-  border-top: 1px solid var(--hairline);
-  padding: 1.25rem 0 1.4rem;
-}
-
-.questions dt {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-size: 1.55rem;
-  letter-spacing: -0.03em;
+.follow-lead {
+  margin-top: 1.25rem;
+  max-width: 38ch;
+  color: #c9c3bb;
+  font-size: 1.02rem;
+  font-weight: 300;
+  line-height: 1.65;
 }
 
 .page-shell {
@@ -724,12 +775,16 @@ button,
   object-position: 68% 36%;
 }
 
+.page-band img {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 58%, transparent 100%);
+}
+
 .page-band::after {
   content: "";
   position: absolute;
-  inset: auto 0 0 0;
-  height: 30%;
-  background: linear-gradient(to bottom, transparent, #0b0c13);
+  inset: 0;
+  background: linear-gradient(to bottom, #0b0c13 0%, transparent 18%, transparent 62%, #0b0c13 100%);
 }
 
 .site-footer {

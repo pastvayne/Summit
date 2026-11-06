@@ -13,9 +13,10 @@ export function Footer() {
           </div>
           <p className="footer-tagline">{brand.tagline}</p>
           <p className="footer-note">
-            Summit is an independent project in the visual weather of Ascend. No official affiliation
-            has been verified. Nothing here is an offer, a yield, or financial advice.
+            SUMMIT is an independent project inspired by the Ascend ecosystem. No official
+            affiliation has been verified. Nothing on this site is an offer or financial advice.
           </p>
+          <p className="footer-copy">© 2026 Summit</p>
         </div>
         <div>
           <p className="eyebrow">Index</p>
@@ -27,7 +28,7 @@ export function Footer() {
             ))}
             <li>
               <a href={brand.ascend} target="_blank" rel="noreferrer">
-                Ascend on X
+                X
               </a>
             </li>
           </ul>

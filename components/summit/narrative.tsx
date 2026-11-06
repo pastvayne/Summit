@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { movements, questions, recordFields } from "@/lib/brand";
+import { brand, movements, recordFields } from "@/lib/brand";
 
 export function Ascent() {
   return (
@@ -8,11 +7,12 @@ export function Ascent() {
       <div className="narrative-grid">
         <div className="narrative-sticky">
           <p className="eyebrow">The ascent</p>
-          <h2 className="display narrative-title">The mountain stands past the weather.</h2>
+          <h2 className="display narrative-title">A project with a horizon.</h2>
         </div>
         <div>
           <p className="narrative-lead">
-            A sea of cloud. A dark face of stone. A light at the top that keeps its own hours.
+            SUMMIT explores what can be made in the Ascend ecosystem. The mountain is the first
+            public expression of that work.
           </p>
           <ol className="movement-list">
             {movements.map((movement) => (
@@ -39,13 +39,15 @@ export function Ascent() {
 export function Record() {
   return (
     <section id="record" className="section-anchor record">
+      <div className="record-scene" aria-hidden="true">
+        {/* Masked into the section. next/image fill fights this crop. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/summit/hero-mobile.jpg" alt="" />
+      </div>
       <div className="record-copy">
-        <p className="eyebrow">The record</p>
-        <h2 className="display record-title">Nothing invented.</h2>
-        <p className="record-lead">
-          Summit is a name, a mountain, and a horizon. A token, a contract, and a ledger stay blank
-          until they can be written without fiction.
-        </p>
+        <p className="eyebrow">Status</p>
+        <h2 className="display record-title">Project status.</h2>
+        <p className="record-lead">A clear record of where the project stands.</p>
         <dl className="record-list">
           {recordFields.map((field) => (
             <div key={field.label}>
@@ -56,37 +58,28 @@ export function Record() {
         </dl>
         <p className="narrative-follow">
           <Link href="/record" className="text-link">
-            Open the colophon
+            Read the full record
           </Link>
         </p>
       </div>
-      <figure className="record-plate">
-        <Image
-          src="/summit/hero-mobile.jpg"
-          alt="The summit seen closer, peach light on the horizon and violet at the peak."
-          fill
-          sizes="(min-width: 960px) 42vw, 100vw"
-          className="object-cover object-[center_28%]"
-        />
-      </figure>
     </section>
   );
 }
 
-export function Questions() {
+export function Follow() {
   return (
-    <section id="questions" className="section-anchor questions">
-      <div className="questions-grid">
-        <h2 className="display questions-title">Asked quietly.</h2>
-        <dl>
-          {questions.map((item) => (
-            <div key={item.q}>
-              <dt>{item.q}</dt>
-              <dd>{item.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+    <section id="follow" className="section-anchor follow">
+      <p className="eyebrow">Next</p>
+      <h2 className="display follow-title">Follow the ecosystem.</h2>
+      <p className="follow-lead">
+        SUMMIT does not have its own public account yet. Ascend’s account is the verified place to
+        watch the world this project belongs to.
+      </p>
+      <p className="narrative-follow">
+        <a className="text-link" href={brand.ascend} target="_blank" rel="noreferrer">
+          X
+        </a>
+      </p>
     </section>
   );
 }
