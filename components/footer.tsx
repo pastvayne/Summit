@@ -13,6 +13,11 @@ export function Footer() {
         SUMMIT is independent. Ascend is the ecosystem it belongs to, not a partnership this site can
         claim. No official affiliation has been verified.
       </p>
+      <p className="narrative-follow">
+        <a className="text-link" href={brand.x} target="_blank" rel="noreferrer">
+          Follow Summit
+        </a>
+      </p>
       <p className="footer-copy">© 2026 Summit</p>
     </footer>
   );

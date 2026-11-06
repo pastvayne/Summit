@@ -1,10 +1,11 @@
 export const brand = {
   name: "SUMMIT",
   tagline: "Beyond the Horizon.",
-  line: "Designed to turn trading fees into SUMMIT buybacks and HYPE distributions for eligible holders.",
+  line: "Designed to turn trading fees into SUMMIT buybacks and KNTQ distributions for eligible holders.",
   universe: "Ascend",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://summitascend.site",
   ascend: "https://x.com/AscendLaunch",
+  x: "https://x.com/SummitElysium",
 } as const;
 
 export const navItems = [
@@ -19,6 +20,6 @@ export const recordFields = [
   { label: "Token", value: "SUMMIT" },
   { label: "Contract", value: "Pending" },
   { label: "Buybacks", value: "Not yet recorded" },
-  { label: "HYPE purchases", value: "Not yet recorded" },
-  { label: "Distributions", value: "Not yet recorded" },
+  { label: "KNTQ purchases", value: "Not yet recorded" },
+  { label: "KNTQ distributions", value: "Not yet recorded" },
 ] as const;

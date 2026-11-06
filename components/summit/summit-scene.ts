@@ -5,7 +5,7 @@ type MountOptions = {
   cue: HTMLElement | null;
 };
 
-const DESKTOP_PEAK = [0.74, 0.67];
+const DESKTOP_PEAK = [0.7, 0.66];
 const MOBILE_PEAK = [0.5, 0.76];
 
 const VERT = `
@@ -237,7 +237,7 @@ export function mountSummit({ canvas, track, copy, cue }: MountOptions) {
     const rect = track.getBoundingClientRect();
     const total = rect.height - window.innerHeight;
     const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-    const zoom = 1 + Math.sin(time * 0.027) * 0.004 + Math.sin(time * 0.011) * 0.003 + progress * 0.035;
+    const zoom = 1 + Math.sin(time * 0.02) * 0.003 + progress * 0.02;
     const panX = Math.sin(time * 0.021) * 0.003 + pointerX * 0.004;
     const panY = Math.cos(time * 0.017) * 0.002 + pointerY * 0.003 - progress * 0.004;
 

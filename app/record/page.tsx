@@ -4,7 +4,7 @@ import { recordFields } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "The Record",
-  description: "Where SUMMIT will publish buybacks, HYPE purchases, and distributions.",
+  description: "Where SUMMIT will publish buybacks, KNTQ purchases, and distributions.",
   alternates: { canonical: "/record" },
 };
 
@@ -15,7 +15,7 @@ export default function RecordPage() {
         <p className="eyebrow">The Record</p>
         <h1 className="display page-title">One transparent record.</h1>
         <p className="page-lead mt-6">
-          Every buyback. Every HYPE purchase. Every distribution. Listed here once each one can be
+          Every buyback. Every KNTQ purchase. Every distribution. Listed here once each one can be
           opened and checked.
         </p>
         <dl className="record-list">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Mark } from "@/components/mark";
-import { navItems } from "@/lib/brand";
+import { brand, navItems } from "@/lib/brand";
 
 export function Nav() {
   const pathname = usePathname();
@@ -50,6 +50,9 @@ export function Nav() {
               </Link>
             );
           })}
+          <a className="nav-link control" href={brand.x} target="_blank" rel="noreferrer">
+            X
+          </a>
         </nav>
         <button
           type="button"
@@ -71,6 +74,11 @@ export function Nav() {
               </Link>
             </li>
           ))}
+          <li>
+            <a className="control" href={brand.x} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
+              X
+            </a>
+          </li>
         </ul>
       </nav>
     </header>

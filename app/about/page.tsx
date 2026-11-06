@@ -15,7 +15,7 @@ export default function AboutPage() {
         <h1 className="display page-title">An independent project in the Ascend ecosystem.</h1>
         <div className="page-prose">
           <p>
-            SUMMIT is designed to turn trading fees into SUMMIT buybacks and HYPE distributions for
+            SUMMIT is designed to turn trading fees into SUMMIT buybacks and KNTQ distributions for
             eligible holders. The mountain is the public face of that idea.
           </p>
           <p>

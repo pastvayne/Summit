@@ -11,7 +11,7 @@ const steps = [
   {
     id: "fees",
     label: "Fees",
-    body: "Collected fees are split into two uses. One portion is for SUMMIT buybacks. The other is for HYPE purchases. The split has not been published.",
+    body: "Collected fees are split into two uses. One portion is for SUMMIT buybacks. The other is for KNTQ purchases. The split has not been published.",
   },
   {
     id: "buybacks",
@@ -20,13 +20,13 @@ const steps = [
   },
   {
     id: "hype",
-    label: "HYPE purchases",
-    body: "The other portion is intended to buy HYPE. HYPE is the token of the Hyperliquid ecosystem. Buying it does not by itself pay anyone.",
+    label: "KNTQ purchases",
+    body: "The other portion is intended to buy KNTQ. Buying it does not by itself pay anyone. What KNTQ is, beyond this use, has not been published here.",
   },
   {
     id: "distributions",
-    label: "HYPE distributions",
-    body: "Purchased HYPE is intended for eligible SUMMIT holders. Eligibility, timing, and amounts depend on fees actually collected and on rules that are not published yet. Nothing here is a yield.",
+    label: "KNTQ distributions",
+    body: "Purchased KNTQ is intended for eligible SUMMIT holders. Eligibility, timing, and amounts depend on fees actually collected and on rules that are not published yet. Nothing here is a yield.",
   },
 ] as const;
 
@@ -36,34 +36,32 @@ export function AscentEngine() {
 
   return (
     <section id="engine" className="section-anchor engine">
-      <div className="engine-head">
-        <p className="eyebrow">The mechanism</p>
-        <h2 className="display engine-title">The Ascent Engine</h2>
-        <p className="engine-lead">Every trade contributes to the journey.</p>
-      </div>
-
-      <div className="engine-flow" role="group" aria-label="Intended fee path">
-        <FlowButton index={0} active={active} onSelect={setActive} label="Trading" />
-        <FlowLine />
-        <FlowButton index={1} active={active} onSelect={setActive} label="Fees" />
-        <FlowSplit />
-        <div className="engine-branches">
-          <div className="engine-branch">
-            <FlowButton index={2} active={active} onSelect={setActive} label="SUMMIT buybacks" />
-          </div>
-          <div className="engine-branch">
-            <FlowButton index={3} active={active} onSelect={setActive} label="HYPE purchases" />
-            <FlowLine />
-            <FlowButton index={4} active={active} onSelect={setActive} label="HYPE distributions" />
+      <div className="engine-stage">
+        <div>
+          <p className="eyebrow">The mechanism</p>
+          <h2 className="display engine-title">The Ascent Engine</h2>
+          <div className="engine-diagram" role="group" aria-label="Intended fee path">
+            <FlowButton index={0} active={active} onSelect={setActive} label="Trading" />
+            <span className="engine-join" aria-hidden="true" />
+            <FlowButton index={1} active={active} onSelect={setActive} label="Fees" />
+            <span className="engine-join engine-join-split" aria-hidden="true" />
+            <div className="engine-branches">
+              <FlowButton index={2} active={active} onSelect={setActive} label="SUMMIT buybacks" />
+              <div className="engine-branch">
+                <FlowButton index={3} active={active} onSelect={setActive} label="KNTQ purchases" />
+                <span className="engine-join" aria-hidden="true" />
+                <FlowButton index={4} active={active} onSelect={setActive} label="KNTQ distributions" />
+              </div>
+            </div>
           </div>
         </div>
+        <div className="engine-note" aria-live="polite">
+          <p className="engine-index">0{active + 1}</p>
+          <h3>{step.label}</h3>
+          <p>{step.body}</p>
+          <p className="engine-aside">Intended model. Not evidence that any of this is already running.</p>
+        </div>
       </div>
-
-      <div className="engine-note" aria-live="polite">
-        <p className="engine-note-kicker">{step.label}</p>
-        <p>{step.body}</p>
-      </div>
-      <p className="engine-aside">This is the intended model. It is not evidence that fees, buybacks, or distributions are already running.</p>
     </section>
   );
 }
@@ -100,12 +98,4 @@ function FlowButton({
       {label}
     </button>
   );
-}
-
-function FlowLine() {
-  return <span className="engine-line" aria-hidden="true" />;
-}
-
-function FlowSplit() {
-  return <span className="engine-split" aria-hidden="true" />;
 }

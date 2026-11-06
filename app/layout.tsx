@@ -28,7 +28,7 @@ const frauncesItalic = Fraunces({
 });
 
 const description =
-  "Designed to turn trading fees into SUMMIT buybacks and HYPE distributions for eligible holders.";
+  "Designed to turn trading fees into SUMMIT buybacks and KNTQ distributions for eligible holders.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(brand.url),

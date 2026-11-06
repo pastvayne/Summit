@@ -22,6 +22,7 @@ export function LivingSummit() {
   return (
     <section id="overview" ref={trackRef} className="hero-track section-anchor relative">
       <div className="hero-stage sticky top-0 h-[100svh] overflow-hidden">
+        <div className="hero-atmosphere" aria-hidden="true" />
         <picture className="plate">
           <source media="(max-width: 767px)" srcSet="/summit/hero-mobile.jpg" />
           <img
@@ -50,11 +51,39 @@ export function LivingSummit() {
             <p className="summit-line rise" style={{ animationDelay: "340ms" }}>
               {brand.line}
             </p>
-            <p className="hero-actions rise" style={{ animationDelay: "430ms" }}>
+            <div className="hero-actions rise" style={{ animationDelay: "420ms" }}>
               <a className="hero-action" href="#engine">
                 Explore the mechanism
               </a>
-            </p>
+              <a className="hero-action" href={brand.x} target="_blank" rel="noreferrer">
+                Follow Summit
+              </a>
+            </div>
+            <dl className="hero-facts rise" style={{ animationDelay: "500ms" }}>
+              <div>
+                <dt>Ecosystem</dt>
+                <dd>Ascend</dd>
+              </div>
+              <div>
+                <dt>Token</dt>
+                <dd>Summit</dd>
+              </div>
+              <div>
+                <dt>Distribution</dt>
+                <dd>KNTQ</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Planned</dd>
+              </div>
+            </dl>
+            <a className="hero-fork rise" href="#engine" style={{ animationDelay: "560ms" }}>
+              <span className="hero-fork-root">Trading fees</span>
+              <span className="hero-fork-arms">
+                <span>SUMMIT buybacks</span>
+                <span>KNTQ distributions</span>
+              </span>
+            </a>
           </div>
         </div>
 
